@@ -3,7 +3,7 @@ package br.com.martins.valdelar.clienteapp.resource;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/v1/")
+@RequestMapping("api/v1/clientes")
 public class ClienteResource {
 
     @GetMapping
