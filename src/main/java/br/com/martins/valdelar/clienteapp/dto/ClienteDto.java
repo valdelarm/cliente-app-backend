@@ -10,11 +10,12 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
 import java.util.Collections;
 
 @Data
 public class ClienteDto {
+
+    private Long id;
     @NotBlank
     private String nome;
     @CPF
@@ -53,9 +54,32 @@ public class ClienteDto {
                         .cep(this.cep).bairro(this.bairro).cidade(this.cidade)
                         .complemento(this.complemento).uf(this.uf).logradouro(this.logradouro)
                         .build())
-                .emailClientes(Collections.singleton(emailCliente))
+                .emailClientes(Collections.singletonList(emailCliente))
                 .telefones(Collections.singletonList(telefone))
                 .build();
+    }
+
+    public static ClienteDto toDto(Cliente entity) {
+        ClienteDto dto = new ClienteDto();
+        dto.setId(entity.getId());
+        dto.setNome(entity.getNome());
+        dto.setCpf(entity.getCpf());
+        dto.setCep(entity.getEndereco().getCep());
+        dto.setBairro(entity.getEndereco().getBairro());
+        dto.setCidade(entity.getEndereco().getCidade());
+        dto.setComplemento(entity.getEndereco().getComplemento());
+        dto.setLogradouro(entity.getEndereco().getLogradouro());
+        dto.setUf(entity.getEndereco().getUf());
+
+        if (entity.getTelefones() != null && !entity.getTelefones().isEmpty()) {
+            dto.setTelefone(entity.getTelefones().get(0).getNumero());
+        }
+
+        if (entity.getEmailClientes() != null && !entity.getEmailClientes().isEmpty()) {
+            dto.setEmail(entity.getEmailClientes().get(0).getEmail());
+        }
+
+        return dto;
     }
 
 }

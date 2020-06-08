@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,9 +25,9 @@ public class ClienteService {
         return clienteRepository.save(dto.toModel());
     }
 
-    public List<Cliente> getAllClientes() {
+    public List<ClienteDto> getAllClientes() {
         log.info("Getting all clientes");
-        return clienteRepository.findAll();
+        return listEntityToDto(clienteRepository.findAll());
     }
 
     public Cliente updateCliente(ClienteDto dto, Long id) {
@@ -48,4 +49,12 @@ public class ClienteService {
         clienteRepository.deleteById(id);
     }
 
+    private List<ClienteDto> listEntityToDto(List<Cliente> entities) {
+        List<ClienteDto> dtoList = new ArrayList<>();
+        for (Cliente e : entities) {
+            dtoList.add(ClienteDto.toDto(e));
+        }
+
+        return dtoList;
+    }
 }

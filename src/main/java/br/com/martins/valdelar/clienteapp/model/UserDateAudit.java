@@ -1,5 +1,6 @@
 package br.com.martins.valdelar.clienteapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,8 +21,10 @@ public abstract class UserDateAudit extends DateAudit {
 
     @CreatedBy
     @Column(updatable = false)
+    @JsonIgnore
     private Long createdBy;
 
     @LastModifiedBy
+    @JsonIgnore
     private Long updatedBy;
 }

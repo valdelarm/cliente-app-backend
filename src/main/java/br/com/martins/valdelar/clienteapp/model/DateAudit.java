@@ -1,5 +1,6 @@
 package br.com.martins.valdelar.clienteapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,9 +25,11 @@ public class DateAudit {
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
+    @JsonIgnore
     private Instant createdAt;
 
     @LastModifiedDate
     @Column(nullable = false)
+    @JsonIgnore
     private Instant updatedAt;
 }

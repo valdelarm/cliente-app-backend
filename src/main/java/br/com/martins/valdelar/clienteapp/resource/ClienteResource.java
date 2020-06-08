@@ -41,7 +41,7 @@ public class ClienteResource {
         return ResponseEntity.created(location).body(new ApiResponse(true, "Cliente criado com sucesso"));
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> updateClient(@PathVariable("id") Long id, @Valid @RequestBody ClienteDto request) {
         System.out.println("update ID " + id);
@@ -55,7 +55,7 @@ public class ClienteResource {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> deleteClient(@PathVariable("id") Long id) {
 
