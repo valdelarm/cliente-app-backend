@@ -1,5 +1,6 @@
 package br.com.martins.valdelar.clienteapp.model;
 
+import lombok.Builder;
 import lombok.Data;
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.Set;
 @Entity
 @Table(name="cliente")
 @Data
+@Builder
 public class Cliente extends UserDateAudit {
 
     @Id

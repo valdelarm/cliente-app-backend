@@ -1,5 +1,6 @@
 package br.com.martins.valdelar.clienteapp.model;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="endereco")
 @Data
+@Builder
 public class Endereco {
 
     @Id
